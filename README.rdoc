@@ -3,4 +3,5 @@
 This is your university project.
 Enjoy.
 
-P.S. dont forget about    rake db:seed
+P.S. dont forget about
+    rake db:seed
