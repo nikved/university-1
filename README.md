@@ -22,7 +22,7 @@ So, How to run this app
 
 
 ### 2) install mysql
-    sudo apt-get  install libmysql-ruby libmysqlclient-dev mysql-client mysql-serve\
+    sudo apt-get  install libmysql-ruby libmysqlclient-dev mysql-client mysql-server
 
 
 ### 3) install node.js
