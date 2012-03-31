@@ -1,4 +1,5 @@
-== Hello, Nikita
+Hello, Nikita
+=============
 
 This is your university project. Enjoy.
 
@@ -6,11 +7,11 @@ P.S. dont forget about
     rake db:seed
 
 
-### So, How to run this app
+So, How to run this app
+-----------------------
 
 
-1) install rvm
---------------
+### 1) install rvm
     bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
     source ~/.bash_profile # reload env
     rvm requirements # then follow the instructions
@@ -20,13 +21,11 @@ P.S. dont forget about
     type rvm | head -1 # should see "rvm is a function"
 
 
-2) install mysql
-----------------
+### 2) install mysql
     sudo apt-get  install libmysql-ruby libmysqlclient-dev mysql-client mysql-serve\
 
 
-3) install node.js
-------------------
+### 3) install node.js
     sudo apt-get install python-software-properties
     sudo add-apt-repository ppa:chris-lea/node.js
     sudo apt-get update
@@ -34,8 +33,7 @@ P.S. dont forget about
     sudo apt-get install nodejs-dev
 
 
-4) run server
--------------
+###4) run server
     cd some_path/university
     bundle install
     rails s
