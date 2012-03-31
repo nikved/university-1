@@ -1,0 +1,42 @@
+<div class="well vcard">
+
+  <legend>Personal Information</legend>
+
+  <dl>
+    <dt>Username</dt>
+    <dd><%= @student.username || '(none)' %></dd>
+  </dl>
+
+  <dl>
+    <dt>Email</dt>
+    <dd><%= @student.email || '(none)' %></dd>
+  </dl>
+
+  <dl>
+    <dt>First Name</dt>
+    <dd><%= @student.first_name || '(none)' %></dd>
+  </dl>
+
+  <dl>
+    <dt>Last Name</dt>
+    <dd><%= @student.last_name || '(none)' %></dd>
+  </dl>
+
+  <dl>
+    <dt>Group</dt>
+    <dd><%= @student.group.try(:name) || '(none)' %></dd>
+  </dl>
+
+  <dl>
+    <dt>Birthday</dt>
+    <dd><%= @student.birthday || '(none)' %></dd>
+  </dl>
+
+  <%= link_to edit_student_path(@student), :class => 'btn' do %>
+      <i class="icon-edit"></i>
+      Edit
+  <% end %>
+
+</div>
+
+

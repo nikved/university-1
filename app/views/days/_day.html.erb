@@ -1,0 +1,15 @@
+<h2><%= day.name %></h2>
+<table class="table table-striped well">
+  <thead>
+  <tr>
+    <th>Time</th>
+    <th>Name</th>
+    <th>Lecture</th>
+    <th>Room</th>
+    <th>Notes</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= render day.lessons %>
+  </tbody>
+</table>

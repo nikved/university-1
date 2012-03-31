@@ -1,0 +1,26 @@
+<h1>Facultys</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @faculties.each do |faculty| %>
+      <tr>
+        <td><%= faculty.id %></td>
+        <td><%= link_to faculty.name, faculty_path(faculty) %></td>
+        <td><%= faculty.created_at %></td>
+        <td>
+          <%= link_to 'Edit', edit_faculty_path(faculty), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', faculty_path(faculty), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New', new_faculty_path, :class => 'btn btn-primary' %>
