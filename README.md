@@ -3,9 +3,6 @@ Hello, Nikita
 
 This is your university project. Enjoy.
 
-P.S. dont forget about
-    rake db:seed
-
 
 So, How to run this app
 -----------------------
@@ -36,4 +33,5 @@ So, How to run this app
 ###4) run server
     cd some_path/university
     bundle install
+    rake db:seed
     rails s
