@@ -5,8 +5,9 @@ ActiveAdmin.register Lesson do
   actions :all, :except =>[:new]
 
   index do
-    column(:time) { |lesson| lesson.time.strftime('%H:%M') }
+    column :time, :strftime
     column :name
+    column :teacher
     column :day
     column :lecture
     default_actions
@@ -16,6 +17,7 @@ ActiveAdmin.register Lesson do
     f.inputs do
       f.input :time
       f.input :name
+      f.input :teacher
       f.input :lecture
       f.input :room
       f.input :notes
@@ -25,8 +27,9 @@ ActiveAdmin.register Lesson do
 
   show do
     attributes_table do
-      row(:time) { |lesson| lesson.time.strftime('%H:%M') }
+      row :time, :strftime
       row :name
+      row :teacher
       row :day
       row :lecture
       row :notes

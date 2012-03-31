@@ -10,6 +10,7 @@ gem 'sorcery'
 gem 'activeadmin'
 gem 'paperclip'
 gem 'awesome_print'
+gem 'forgery'
 
 # Gems used only for assets and not required
 # in production environments by default.

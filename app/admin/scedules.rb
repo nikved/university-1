@@ -10,11 +10,13 @@ ActiveAdmin.register Schedule do
 
   show :title => :name do |schedule|
     schedule.days.each do |day|
-      panel day.name do
-        table_for day.lessons do
-          column :strftime
+      div do
+        h2 { day.name }
+        table_for day.lessons, :class => 'index_table' do
+          column :time, :strftime
           column :name
-          column(:'lecture/practice')  { |lesson| lesson.lecture? ? status_tag('lecture', :error) : status_tag('practice') }
+          column :teacher
+          column(:'lecture/practice') { |lesson| lesson.lecture? ? status_tag('lecture', :error) : status_tag('practice') }
           column :room
           column :notes
           column '' do |lesson|
@@ -34,6 +36,7 @@ ActiveAdmin.register Schedule do
           f.input :day, :as => :select, :collection => schedule.days
           f.input :time
           f.input :name
+          f.input :teacher
           f.input :lecture
           f.input :room
           f.input :notes
