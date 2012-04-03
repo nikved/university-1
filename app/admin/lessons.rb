@@ -27,7 +27,7 @@ ActiveAdmin.register Lesson do
 
   show do
     attributes_table do
-      row :time, :strftime
+      row :time, &:strftime
       row :name
       row :teacher
       row :day
@@ -41,7 +41,7 @@ ActiveAdmin.register Lesson do
   controller do
     def create
       @lesson = Lesson.new(params[:lesson])
-      ap time = Time.now.utc.change(:hour => params[:lesson][:'time(4i)'].to_i, :min => params[:lesson][:'time(5i)'].to_i, :sec => 0)
+      time = Time.now.utc.change(:hour => params[:lesson][:'time(4i)'].to_i, :min => params[:lesson][:'time(5i)'].to_i, :sec => 0)
       @lesson.time = time
       create!
     end

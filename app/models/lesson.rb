@@ -6,6 +6,8 @@ class Lesson < ActiveRecord::Base
 
   validates_presence_of :day, :teacher, :time, :room, :name
 
+  default_scope order('lessons.time')
+
   def strftime
     time.strftime('%H:%M')
   end

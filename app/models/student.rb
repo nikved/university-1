@@ -10,6 +10,7 @@ class Student < ActiveRecord::Base
 
   belongs_to :group
   has_one :schedule, :through => :group
+  has_many :lessons
 
   before_validation :setup_username, :on => :create
 

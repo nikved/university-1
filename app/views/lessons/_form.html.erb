@@ -1,9 +1,10 @@
 <%= form_for @lesson, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+    <div class="form-notifications"></div>
     <fieldset>
       <div class="control-group">
         <%= f.label :day, :class => 'control-label' %>
         <div class="controls">
-          <%= f.select :day, options_from_collection_for_select(@days, :id, :name), :include_blank => true %>
+          <%= f.select :day_id, options_from_collection_for_select(@days, :id, :name), :include_blank => true %>
         </div>
       </div>
 
@@ -24,7 +25,7 @@
       <div class="control-group">
         <%= f.label :teacher, :class => 'control-label' %>
         <div class="controls">
-          <%= f.select :teacher, options_from_collection_for_select(AdminUser.all, :id, :name), :include_blank => true %>
+          <%= f.select :teacher_id, options_from_collection_for_select(AdminUser.all, :id, :name), :include_blank => true %>
         </div>
       </div>  
 

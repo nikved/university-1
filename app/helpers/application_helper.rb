@@ -22,16 +22,21 @@ module ApplicationHelper
     link_to text.truncate(45), '#', :rel => 'tooltip', :'data-original-title' => text
   end
 
-  def flash_messages
-    ''.html_safe.tap do |content|
-      [:success, :warning, :error].each do |type|
-        if flash[type]
-          content << content_tag(:div, :class => "alert alert-#{type}") do
-            %(<a class="close" data-dismiss="alert">&#xD7;</a>#{flash[type]}).html_safe
-          end
-        end
-      end
+  def flash_message(type, message = nil)
+    message ||= flash[type]
+    if message.present?
+      %(<div class="alert alert-#{type}"><a class="close" data-dismiss="alert">&#xD7;</a>#{message}</div>).html_safe
     end
+  end
+
+  def flash_messages
+    content = ''.html_safe
+
+    content << flash_message(:success) if flash[:success]
+    content << flash_message(:warning) if flash[:warning]
+    content << flash_message(:error) if flash[:error]
+
+    content
   end
 
   def modal(header = '', body = '', footer = '')

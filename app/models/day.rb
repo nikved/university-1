@@ -9,5 +9,14 @@ class Day < ActiveRecord::Base
 
   validates_inclusion_of :name, :in => DAYNAMES
 
+  alias _lessons lessons
+
+  def lessons(student = nil)
+    _lessons.where(:student_id => nil) # TODO: fix overwrite
+  end
+
+  def lessons_for(student)
+  	_lessons.where(:student_id => student.id)
+  end
 
 end

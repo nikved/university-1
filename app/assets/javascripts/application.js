@@ -25,3 +25,7 @@
 $(function() {
     $('.field_with_errors').parent('.control-group').addClass('error');
 });
+
+var clearForm = function(form) {
+    form[0].reset();
+};
