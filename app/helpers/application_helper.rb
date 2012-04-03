@@ -34,4 +34,8 @@ module ApplicationHelper
     end
   end
 
+  def modal(header = '', body = '', footer = '')
+    render '/shared/modal', :header => header, :body => body, :footer => footer
+  end
+
 end

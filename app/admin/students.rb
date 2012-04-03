@@ -29,7 +29,7 @@ ActiveAdmin.register Student do
       f.input :email
       f.input :first_name
       f.input :last_name
-      f.input :birthday, :as => :datepicker
+      f.input :birthday, :as => :datepicker, :hint => 'yyyy-mm-dd'
       f.input :group
     end
 

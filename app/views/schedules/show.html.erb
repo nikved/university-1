@@ -2,4 +2,12 @@
   <h1><%= @schedule.name %></h1>
 </div>
 
+
 <%= render @schedule.days %>
+<div class="form-actions">
+  <%= link_to new_lesson_path(:schedule_id => @schedule.id), :remote => true, :class => 'btn' do %>
+      <i class="icon-plus"></i>
+      New Lesson
+  <% end %>
+
+</div>
