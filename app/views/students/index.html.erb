@@ -1,26 +1,17 @@
-<h1>Students</h1>
-<table class="table table-striped">
+<div class="page-header">
+  <h1>Students</h1>
+</div>
+
+<%= render 'filter_form' %>
+
+<table class="table table-striped well">
   <thead>
-    <tr>
-      <th>ID</th>
-      <th>Username</th>
-      <th>Created at</th>
-      <th>Actions</th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Group</th>
+  </tr>
   </thead>
   <tbody>
-    <% @students.each do |student| %>
-      <tr>
-        <td><%= student.id %></td>
-        <td><%= link_to student.username, student_path(student) %></td>
-        <td><%= student.created_at %></td>
-        <td>
-          <%= link_to 'Edit', edit_student_path(student), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', student_path(student), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
+  <%= render collection %>
   </tbody>
 </table>
-
-<%= link_to 'New', new_student_path, :class => 'btn btn-primary' %>

@@ -1,40 +1,43 @@
 <div class="well vcard">
 
-  <legend>Personal Information</legend>
+  <legend><%= "#{resource.username}'s".capitalize %> Profile</legend>
 
   <dl>
     <dt>Username</dt>
-    <dd><%= @student.username || '(none)' %></dd>
+    <dd><%= resource.username || '(none)' %></dd>
   </dl>
 
   <dl>
     <dt>Email</dt>
-    <dd><%= @student.email || '(none)' %></dd>
+    <dd><%= resource.email ? mail_to(resource.email) : '(none)' %></dd>
   </dl>
 
   <dl>
     <dt>First Name</dt>
-    <dd><%= @student.first_name || '(none)' %></dd>
+    <dd><%= resource.first_name || '(none)' %></dd>
   </dl>
 
   <dl>
     <dt>Last Name</dt>
-    <dd><%= @student.last_name || '(none)' %></dd>
+    <dd><%= resource.last_name || '(none)' %></dd>
   </dl>
 
   <dl>
     <dt>Group</dt>
-    <dd><%= @student.group.try(:name) || '(none)' %></dd>
+    <dd><%= resource.group.try(:name) || '(none)' %></dd>
   </dl>
 
   <dl>
     <dt>Birthday</dt>
-    <dd><%= @student.birthday || '(none)' %></dd>
+    <dd><%= resource.birthday || '(none)' %></dd>
   </dl>
 
-  <%= link_to edit_student_path(@student), :class => 'btn' do %>
+  <% if resource == current_user %>
+
+    <%= link_to edit_student_path(@student), :class => 'btn' do %>
       <i class="icon-edit"></i>
       Edit
+    <% end %>
   <% end %>
 
 </div>

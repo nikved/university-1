@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1>Exams(<%= link_to 'my', exams_path(:lesson_day_schedule_group_number_eq => current_user.group.number) %>)</h1>
+</div>
+
+<%= render 'filter_form' %>
+
+<table class="table table-striped well">
+  <thead>
+  <tr>
+    <th>Time</th>
+    <th>Lesson name</th>
+    <th>Teacher</th>
+    <th>Room</th>
+    <th>Notes</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= render collection %>
+  </tbody>
+</table>

@@ -1,12 +1,10 @@
 University::Application.routes.draw do
 
   resources :schedules
-
-  resources :days
-
+  resources :sessions
+  resources :students
+  resources :exams
   resources :lessons
-
-  resources :teachers
 
   ActiveAdmin.routes(self)
 
@@ -16,8 +14,6 @@ University::Application.routes.draw do
   get 'login' => 'sessions#new', :as => 'login'
   get 'signup' => 'students#new', :as => 'signup'
 
-  resources :sessions
-  resources :students
 
   root :to => 'home#index'
 

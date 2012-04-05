@@ -1,37 +1,13 @@
-class StudentsController < ApplicationController
+class StudentsController < InheritedResources::Base
 
   skip_before_filter :require_login, :only => [:new, :create]
 
-  def new
-    @student = Student.new
-  end
+  respond_to :html, :json
 
-  def show
-    @student = current_user
-  end
-
-  def edit
-    @student = current_user
-  end
-
-  def update
-    @student = current_user
-    @student.attributes = params[:student]
-    if @student.save
-      redirect_to @student
-    else
-      render :edit
-    end
-
-  end
-
-  def create
-    @student = Student.new(params[:student])
-    if @student.save
-      redirect_to @student
-    else
-      render :new
-    end
+  def index
+    @search = Student.search(params[:search])
+    @students = @search.relation
+    index!
   end
 
 end

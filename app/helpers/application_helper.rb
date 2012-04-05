@@ -1,13 +1,18 @@
 module ApplicationHelper
 
   def nav_items
+    items = Hash.new
+
     if logged_in?
-      items = { 'Personal Information' => student_path(current_user) }
-      items.merge!('Schedules' => schedules_path) if current_user.group
-      items
-    else
-      Hash.new
+      items['Personal Information'] = student_path(current_user)
+      items['Students'] = students_path
+      if current_user.group
+        items['Schedules'] = schedules_path
+        items['Exams'] = exams_path
+      end
     end
+
+    items
   end
 
   def nav_right_items
