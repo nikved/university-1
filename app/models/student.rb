@@ -1,4 +1,5 @@
 class Student < ActiveRecord::Base
+
   authenticates_with_sorcery!
 
   attr_accessible :email, :first_name, :last_name, :username, :birthday, :group_id, :group, :password, :password_confirmation

@@ -1,4 +1,4 @@
-<%= form_for @search, :html => { :class => 'well inline-form' } do |f| %>
+<%= form_for search, :html => { :class => 'well inline-form' } do |f| %>
     <%= f.text_field :first_name_or_last_name_like, :placeholder => 'Name', :class => 'input-medium' %>
     <%= f.select :group_faculty_id_eq, options_from_collection_for_select(Faculty.all, :id, :name, @search.group_faculty_id_eq), { :include_blank => '-- Faculty --' } %>
     <%= f.select :group_number_eq, (1..20).to_a, { :include_blank => '-- Group number --' }, :class => 'input-medium' %>

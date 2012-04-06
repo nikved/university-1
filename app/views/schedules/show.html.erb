@@ -1,13 +1,15 @@
 <div class="page-header">
-  <h1><%= @schedule.name %></h1>
+  <h1><%= resource.name %></h1>
 </div>
 
 
-<%= render @schedule.days %>
+<%= render resource.days %>
+
+<% if resource.group == current_user.group %>
 <div class="form-actions">
   <%= link_to new_lesson_path(:schedule_id => @schedule.id), :remote => true, :class => 'btn' do %>
-      <i class="icon-plus"></i>
-      New Lesson
+  <i class="icon-plus"></i>
+  New Lesson
   <% end %>
-
 </div>
+<% end %>

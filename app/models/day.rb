@@ -12,11 +12,11 @@ class Day < ActiveRecord::Base
   alias _lessons lessons
 
   def lessons(student = nil)
-    _lessons.where(:student_id => nil) # TODO: fix overwrite
+    _lessons.where(:student_id => nil).all # TODO: fix overwrite
   end
 
   def lessons_for(student)
-  	_lessons.where(:student_id => student.id)
+  	_lessons.where(:student_id => student.id).all
   end
 
 end

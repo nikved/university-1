@@ -1,44 +1,28 @@
 <div class="well vcard">
 
-  <legend><%= "#{resource.username}'s".capitalize %> Profile</legend>
+  <%= profile_title %>
 
   <dl>
     <dt>Username</dt>
-    <dd><%= resource.username || '(none)' %></dd>
-  </dl>
+    <dd><%= resource.username %></dd>
 
-  <dl>
     <dt>Email</dt>
-    <dd><%= resource.email ? mail_to(resource.email) : '(none)' %></dd>
-  </dl>
+    <dd><%= resource.email %></dd>
 
-  <dl>
     <dt>First Name</dt>
-    <dd><%= resource.first_name || '(none)' %></dd>
-  </dl>
+    <dd><%= resource.first_name %></dd>
 
-  <dl>
     <dt>Last Name</dt>
-    <dd><%= resource.last_name || '(none)' %></dd>
-  </dl>
+    <dd><%= resource.last_name %></dd>
 
-  <dl>
     <dt>Group</dt>
-    <dd><%= resource.group.try(:name) || '(none)' %></dd>
-  </dl>
+    <dd><%= resource.group %></dd>
 
-  <dl>
     <dt>Birthday</dt>
-    <dd><%= resource.birthday || '(none)' %></dd>
+    <dd><%= resource.birthday %></dd>
+
+    <%= edit_profile_button %>
   </dl>
-
-  <% if resource == current_user %>
-
-    <%= link_to edit_student_path(@student), :class => 'btn' do %>
-      <i class="icon-edit"></i>
-      Edit
-    <% end %>
-  <% end %>
 
 </div>
 
