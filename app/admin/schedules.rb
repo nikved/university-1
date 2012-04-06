@@ -1,4 +1,7 @@
 ActiveAdmin.register Schedule do
+  
+  menu :if => proc { can? :manage, Schedule }
+  controller.authorize_resource
 
   actions :all, :except => [:new, :create, :destroy, :edit]
   scope(:all, :default => true) { |sc| sc.includes :group }

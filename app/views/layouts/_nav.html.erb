@@ -1,5 +1,5 @@
 <ul class="nav">
   <% nav_items.each do |name, path| %>
-      <li class="<%= 'active' if current_page? path %>"><%= link_to name, path %></li>
+    <%=raw %(<li class="#{'active' if current_page? path}">#{link_to name, path}</li>) %>
   <% end %>
 </ul>

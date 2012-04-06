@@ -1,4 +1,5 @@
 ActiveAdmin::Dashboards.build do
+  
   section 'Belarusian State University' do
     div :style => 'text-align:center;' do
       image_tag 'bsu.jpg'

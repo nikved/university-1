@@ -1,5 +1,8 @@
 ActiveAdmin.register Student do
 
+  menu :if => proc { can? :manage, Student }
+  controller.authorize_resource
+
   actions :all, :except => [:new, :create]
 
   index do

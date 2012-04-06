@@ -10,15 +10,6 @@ def rand_name
 	Forgery::LoremIpsum.words(1000).scan(/\w{7,}/).sample
 end
 
-if AdminUser.count < 10
-  10.times do
-    admin = AdminUser.create :name     => Forgery::Name.full_name, 
-                             :email    => Forgery::Email.address,
-                             :password => AdminUser::DEFAULT_PASSWORD
-    ap "admin #{admin.name} created"if admin.persisted?
-  end
-end
-
 if Faculty.count < 10
   10.times do
     faculty = Faculty.create :name        => "Faculty of #{rand_name}",
@@ -70,5 +61,21 @@ if Student.count < 50
                              :group                 => Group.first(:order => 'rand()'),
                              :birthday              => Forgery::Date.date(:past => true, :min_delta => 8000, :max_delta => 9000)
     ap "student #{student.name} created" if student.persisted?
+  end
+end
+
+%w(AdminUser Branch Day Department Exam Faculty Group Lesson Schedule Student AdminRole).each do |klass|
+  AbilityItem.find_or_create_by_data klass
+end
+
+super_admin_role = AdminRole.find_or_create_by_name('Super Admin').tap { |role| role.ability_items << AbilityItem.all }
+
+if AdminUser.count < 10
+  10.times do
+    admin = AdminUser.create :name       => Forgery::Name.full_name, 
+                             :email      => Forgery::Email.address,
+                             :password   => AdminUser::DEFAULT_PASSWORD,
+                             :admin_role => super_admin_role
+    ap "admin #{admin.name} created"if admin.persisted?
   end
 end

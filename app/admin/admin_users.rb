@@ -1,8 +1,12 @@
 ActiveAdmin.register AdminUser do
 
+  menu :if => proc { can? :manage, AdminUser }
+  controller.authorize_resource
+
   index do
     column :name
     column :email
+    column :admin_role
     column :last_sign_in_at
     column :last_sign_in_ip
     default_actions
@@ -12,6 +16,7 @@ ActiveAdmin.register AdminUser do
     attributes_table do
       row :name
       row :email
+      row :admin_role
       row :last_sign_in_at
       row :last_sign_in_ip
     end
@@ -21,6 +26,7 @@ ActiveAdmin.register AdminUser do
     f.inputs do
       f.input :name, :label => 'Full name'
       f.input :email, :input_html => { :disabled => f.object.persisted? }
+      f.input :admin_role
     end
     f.buttons
   end

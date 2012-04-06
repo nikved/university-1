@@ -1,6 +1,7 @@
 <%= form_for @search, :html => { :class => 'well inline-form' } do |f| %>
-    <%= f.text_field :lesson_name_like, :placeholder => 'Lesson name' %>
-    <%= f.select :lesson_teacher_name_like, options_from_collection_for_select(AdminUser.all, :id, :name), :include_blank => '-- Teacher --' %>
+    <%= f.text_field :group_number_eq, :placeholder => 'Group #', :class => 'input-mini' %>
+    <%= f.text_field :lesson_like, :placeholder => 'Lesson' %>
+    <%= f.text_field :teacher_name_like, :placeholder => 'Teacher' %>
     
     <%= button_tag 'Search', :class => 'btn' do %>
         <i class="icon-search"></i>

@@ -1,5 +1,8 @@
 ActiveAdmin.register Group do
 
+  menu :if => proc { can? :manage, Group }
+  controller.authorize_resource
+
   scope(:all, :default => true) { |groups| groups.includes [:faculty, :branch, :department] }
 
   index do

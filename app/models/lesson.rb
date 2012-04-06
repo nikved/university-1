@@ -12,4 +12,8 @@ class Lesson < ActiveRecord::Base
     time.strftime('%H:%M')
   end
 
+  def self.names
+    select('distinct(name)').map &:name
+  end
+
 end

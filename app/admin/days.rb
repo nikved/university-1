@@ -1,5 +1,7 @@
 ActiveAdmin.register Day do
 
+  controller.authorize_resource
+
   menu false
 
   show do

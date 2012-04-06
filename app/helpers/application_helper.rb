@@ -6,10 +6,8 @@ module ApplicationHelper
     if logged_in?
       items['Personal Information'] = student_path(current_user)
       items['Students'] = students_path
-      if current_user.group
-        items['Schedules'] = schedules_path
-        items['Exams'] = exams_path
-      end
+      items['Schedules'] = schedules_path
+      items['Exams'] = exams_path
     end
 
     items

@@ -1,4 +1,6 @@
 ActiveAdmin.register Lesson do
+  
+  controller.authorize_resource
 
   menu false
 

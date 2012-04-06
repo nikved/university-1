@@ -1,5 +1,8 @@
 ActiveAdmin.register Department do
 
+  menu :if => proc { can? :manage, Department }
+  controller.authorize_resource
+
   scope(:all, :default => true) { |dep| dep.includes :faculty }
 
   index do

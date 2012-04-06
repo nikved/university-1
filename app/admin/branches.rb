@@ -1,5 +1,8 @@
 ActiveAdmin.register Branch do
 
+  menu :if => proc { can? :manage, Branch }
+  controller.authorize_resource
+
   scope(:all, :default => true) { |dep| dep.includes :faculty }
 
   index do
