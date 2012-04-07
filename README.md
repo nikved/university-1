@@ -1,7 +1,7 @@
-Hello, Nikita
+Hello, Everyone
 =============
 
-This is your university project. Enjoy.
+This is my university project. Enjoy.
 
 
 So, How to run this app
