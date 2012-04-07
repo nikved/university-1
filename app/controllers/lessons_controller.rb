@@ -13,4 +13,5 @@ class LessonsController < InheritedResources::Base
     @lesson.time = time
     create!
   end
+  
 end

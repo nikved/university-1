@@ -1,11 +1,16 @@
 class SchedulesController < InheritedResources::Base
 
   respond_to :html, :json
+  helper_method :search
 
-  def index
-    @search = Schedule.search(params[:search])
-    @schedules = @search.relation
-    index!
+  protected
+
+  def collection
+    @schedules ||= search.relation
+  end
+
+  def search
+    @search ||= Schedule.search(params[:search])
   end
 
 end

@@ -10,11 +10,6 @@
  *
  *= require_self
  *= require bootstrap_and_overrides
- *= require branches
  *= require datepicker
- *= require faculties
- *= require groups
- *= require home
- *= require sessions
  *= require students
 */

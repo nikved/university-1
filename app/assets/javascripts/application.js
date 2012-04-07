@@ -14,13 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require bootstrap
-//= require branches
 //= require datepicker
-//= require faculties
-//= require groups
-//= require home
-//= require sessions
-//= require students
 
 $(function() {
     $('.field_with_errors').parent('.control-group').addClass('error');

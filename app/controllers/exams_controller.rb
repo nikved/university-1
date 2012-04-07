@@ -1,11 +1,16 @@
 class ExamsController < InheritedResources::Base
 
   respond_to :html, :json
-
-  def index
-    @search = Exam.search(params[:search])
-    @exams = @search.relation
-    index!
+  helper_method :search
+  
+  protected
+  
+  def collection
+    @exams ||= search.relation
+  end
+  
+  def search
+    @search ||= Exam.search(params[:search])
   end
 
 
