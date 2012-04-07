@@ -30,5 +30,9 @@ ActiveAdmin.register AdminUser do
     end
     f.buttons
   end
+
+  filter :name
+  filter :admin_role
+  filter :email
   
 end

@@ -74,14 +74,16 @@ end
   AbilityItem.find_or_create_by_data klass
 end
 
-super_admin_role = AdminRole.find_or_create_by_name('Super Admin').tap { |role| role.ability_items << AbilityItem.all }
-
+AdminUser.find_or_create_by_email :name       => 'Main Admin', 
+                                  :email      => 'admin@admin.com',
+                                  :password   => AdminUser::DEFAULT_PASSWORD,
+                                  :admin_role => AdminRole.super_admin
 if AdminUser.count < 10
   10.times do
     admin = AdminUser.create :name       => Forgery::Name.full_name, 
                              :email      => Forgery::Email.address,
                              :password   => AdminUser::DEFAULT_PASSWORD,
-                             :admin_role => super_admin_role
-    ap "admin #{admin.name} created"if admin.persisted?
+                             :admin_role => AdminRole.teacher
+    ap "teacher #{admin.name} created" if admin.persisted?
   end
 end

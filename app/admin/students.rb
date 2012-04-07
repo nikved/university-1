@@ -39,4 +39,9 @@ ActiveAdmin.register Student do
     f.buttons
   end
 
+  filter :email
+  filter :first_name
+  filter :last_name
+  filter :group
+
 end
