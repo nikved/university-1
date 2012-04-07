@@ -11,7 +11,7 @@ University::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   get 'logout' => 'sessions#destroy', :as => 'logout'
-  get 'login' => 'sessions#new', :as => 'login'
+  get 'login' => 'home#index', :as => 'login'
   get 'signup' => 'students#new', :as => 'signup'
 
 

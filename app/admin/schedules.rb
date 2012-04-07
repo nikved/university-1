@@ -25,8 +25,10 @@ ActiveAdmin.register Schedule do
           column '' do |lesson|
             links = ''.html_safe
             links += link_to 'View', admin_lesson_path(lesson), :class => 'member_link view_link'
-            links += link_to 'Edit', edit_admin_lesson_path(lesson), :class => 'member_link edit_link'
-            links += link_to 'Delete', admin_lesson_path(lesson), :method => :delete, :confirm => 'Are you sure you want to delete this?', :class => 'member_link delete_link'
+            if can? :edit_delete, lesson
+              links += link_to 'Edit', edit_admin_lesson_path(lesson), :class => 'member_link edit_link'
+              links += link_to 'Delete', admin_lesson_path(lesson), :method => :delete, :confirm => 'Are you sure you want to delete this?', :class => 'member_link delete_link'
+            end
             links
           end
         end
@@ -36,10 +38,10 @@ ActiveAdmin.register Schedule do
     div do
       active_admin_form_for [:admin, lesson] do |f|
         f.inputs do
-          f.input :day, :as => :select, :collection => schedule.days
+          f.input :day, :as => :select, :collection => schedule.days, :include_blank => false
           f.input :time
           f.input :name
-          f.input :teacher
+          f.input :teacher, :collection => current_admin_user.teacher? ? [current_admin_user] : AdminUser.all, :include_blank => !current_admin_user.teacher?
           f.input :lecture
           f.input :room
           f.input :notes

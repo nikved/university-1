@@ -28,8 +28,7 @@ if Branch.count < 20
   end
 end
 
-
-if Group.count < 20
+if Group.count < 10
   20.times do
     group = Group.new :faculty => Faculty.first(:order => 'rand()'),
                        :number => Forgery::Basic.number,
@@ -42,22 +41,7 @@ if Group.count < 20
   end
 end
 
-Day.all.each do |day|
-  if day.lessons.empty?
-    [[13, 0], [14, 30], [16, 0]].each do |h, m|
-      Lesson.create :time    => Time.now.utc.change(:hour => h, :min => m),
-                    :day     => day,
-                    :name    => rand_name,
-                    :teacher => AdminUser.all.sample,
-                    :lecture => [true, false].sample,
-                    :room    => (100..600).to_a.sample,
-                    :notes   => Forgery::LoremIpsum.words
-    end
-  end
-end
-
-
-if Student.count < 50
+if Student.count < 100
   50.times do
     student = Student.create :email                 => Forgery::Email.address,
                              :password              => AdminUser::DEFAULT_PASSWORD,
@@ -85,5 +69,19 @@ if AdminUser.count < 10
                              :password   => AdminUser::DEFAULT_PASSWORD,
                              :admin_role => AdminRole.teacher
     ap "teacher #{admin.name} created" if admin.persisted?
+  end
+end
+
+Day.all.each do |day|
+  if day.lessons.empty?
+    [[13, 0], [14, 30], [16, 0]].each do |h, m|
+      Lesson.create :time    => Time.now.utc.change(:hour => h, :min => m),
+                    :day     => day,
+                    :name    => rand_name,
+                    :teacher => AdminUser.all.sample,
+                    :lecture => [true, false].sample,
+                    :room    => (100..600).to_a.sample,
+                    :notes   => Forgery::LoremIpsum.words
+    end
   end
 end

@@ -8,7 +8,7 @@ class AdminUser < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :name, :admin_role_id, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :name, :admin_role_id, :admin_role, :password, :password_confirmation, :remember_me
 
   belongs_to :admin_role
 
@@ -17,6 +17,11 @@ class AdminUser < ActiveRecord::Base
 
   after_create { |admin| admin.send_reset_password_instructions }
   before_validation :setup_password, :on => :create
+
+
+  def teacher?
+    admin_role == AdminRole.teacher
+  end
 
   private
 

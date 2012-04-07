@@ -8,12 +8,20 @@ class Lesson < ActiveRecord::Base
 
   default_scope order('lessons.time')
 
+  after_update :notify_students
+
   def strftime
     time.strftime('%H:%M')
   end
 
   def self.names
     select('distinct(name)').map &:name
+  end
+
+  private
+
+  def notify_students
+    GroupMailer.schedule_changed(self).deliver
   end
 
 end

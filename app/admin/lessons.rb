@@ -4,7 +4,7 @@ ActiveAdmin.register Lesson do
 
   menu false
 
-  actions :all, :except =>[:new]
+  actions :all, :except => [:new]
 
   index do
     column :time, :strftime
@@ -12,14 +12,23 @@ ActiveAdmin.register Lesson do
     column :teacher
     column :day
     column :lecture
-    default_actions
+    column '' do |lesson|
+      links = ''.html_safe
+      links += link_to 'View', admin_lesson_path(lesson), :class => 'member_link view_link'
+      if can? :edit_delete, lesson
+        links += link_to 'Edit', edit_admin_lesson_path(lesson), :class => 'member_link edit_link'
+        links += link_to 'Delete', admin_lesson_path(lesson), :method => :delete, :confirm => 'Are you sure you want to delete this?', :class => 'member_link delete_link'
+      end
+      links
+    end
   end
 
   form do |f|
     f.inputs do
+      f.input :day, :collection => [f.object.day], :include_blank => false
       f.input :time
       f.input :name
-      f.input :teacher
+      f.input :teacher, :collection => current_admin_user.teacher? ? [current_admin_user] : AdminUser.all, :include_blank => !current_admin_user.teacher?
       f.input :lecture
       f.input :room
       f.input :notes
