@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 def rand_name
 	Forgery::LoremIpsum.words(1000).scan(/\w{7,}/).sample
 end
@@ -47,6 +39,20 @@ if Group.count < 20
     group.save
 
     ap "gropu #{group.name} created" if group.persisted?
+  end
+end
+
+Day.all.each do |day|
+  if day.lessons.empty?
+    [[13, 0], [14, 30], [16, 0]].each do |h, m|
+      Lesson.create :time    => Time.now.utc.change(:hour => h, :min => m),
+                    :day     => day,
+                    :name    => rand_name,
+                    :teacher => AdminUser.all.sample,
+                    :lecture => [true, false].sample,
+                    :room    => (100..600).to_a.sample,
+                    :notes   => Forgery::LoremIpsum.words
+    end
   end
 end
 
