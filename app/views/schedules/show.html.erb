@@ -2,14 +2,5 @@
   <h1><%= resource.name %></h1>
 </div>
 
-
 <%= render resource.days %>
-
-<% if resource.group == current_user.group %>
-<div class="form-actions">
-  <%= link_to new_lesson_path(:schedule_id => @schedule.id), :remote => true, :class => 'btn' do %>
-  <i class="icon-plus"></i>
-  New Lesson
-  <% end %>
-</div>
-<% end %>
+<%= new_lesson_button %>

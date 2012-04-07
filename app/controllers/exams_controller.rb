@@ -4,9 +4,9 @@ class ExamsController < InheritedResources::Base
   helper_method :search
   
   protected
-  
+
   def collection
-    @exams ||= search.relation
+    @exams ||= ExamDecorator.decorate(search.relation)
   end
   
   def search

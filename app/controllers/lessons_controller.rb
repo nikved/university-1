@@ -3,7 +3,7 @@ class LessonsController < InheritedResources::Base
 
   def new
   	@lesson = Lesson.new
-    @days = Schedule.find(params[:schedule_id]).days
+    @days = current_user.schedule.days
     new!
   end
 

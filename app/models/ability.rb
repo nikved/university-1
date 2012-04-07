@@ -8,6 +8,9 @@ class Ability
     can :manage, Student do |another_student|
       another_student == student
     end
+    can :create_lesson, Schedule do |schedule|
+      student.group == schedule.group
+    end
 
     # Define abilities for the passed in user here. For example:
     #

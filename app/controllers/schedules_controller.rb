@@ -6,7 +6,11 @@ class SchedulesController < InheritedResources::Base
   protected
 
   def collection
-    @schedules ||= search.relation
+    @schedules ||= ScheduleDecorator.decorate(search.relation)
+  end
+
+  def resource
+    @schedule ||= ScheduleDecorator.find(params[:id])
   end
 
   def search
