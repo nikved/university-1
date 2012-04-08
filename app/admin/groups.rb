@@ -7,7 +7,7 @@ ActiveAdmin.register Group do
 
   index do
     column :faculty, :sortable => 'faculties.name'
-    column :number
+    column :group_number, &:number
     column :branch, :sortable => 'branches.name'
     column :department, :sortable => 'departments.name'
     column :start_year
@@ -23,6 +23,12 @@ ActiveAdmin.register Group do
       row :department
       row :start_year
       row(:schedule) { |group| link_to 'schedule', [:admin, group.schedule] }
+    end
+    div do
+      h2 { 'Students' } 
+      table_for group.students, :class => 'index_table' do
+        column(:name) { |student| link_to student.name, [:admin, student] }
+      end
     end
   end
 

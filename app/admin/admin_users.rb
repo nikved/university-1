@@ -1,6 +1,9 @@
 ActiveAdmin.register AdminUser do
 
-  menu :if => proc { can? :manage, AdminUser }
+  scope :teachers, :default => true
+  scope :admins
+
+  menu :if => proc { can? :manage, AdminUser }, :label => 'Teachers/Admins'
   controller.authorize_resource
 
   index do

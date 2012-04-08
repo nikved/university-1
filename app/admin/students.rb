@@ -43,5 +43,9 @@ ActiveAdmin.register Student do
   filter :first_name
   filter :last_name
   filter :group
+  filter :group_faculty_name, :collection => Faculty.all.map(&:name), :as => :select, :label => 'Faculty'
+  filter :group_department_name, :collection => Department.all.map(&:name), :as => :select, :label => 'Department'
+  filter :group_branch_name, :collection => Branch.all.map(&:name), :as => :select, :label => 'Branch'
+  filter :group_start_year, :as => :numeric, :label => 'Start year'
 
 end

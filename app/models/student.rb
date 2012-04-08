@@ -16,13 +16,13 @@ class Student < ActiveRecord::Base
   before_validation :setup_username, :on => :create
 
   def name
-  	"#{first_name} #{last_name}" if first_name.presence
+    "#{first_name} #{last_name}" if first_name.presence
   end
 
   private 
 
   def setup_username
-  	self.username ||= self.email.split('@').first
+    self.username ||= self.email.split('@').first
   end
 
 end

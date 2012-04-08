@@ -59,4 +59,9 @@ ActiveAdmin.register Schedule do
     end
   end
 
+  filter :group
+  filter :group_faculty_name, :collection => Faculty.all.map(&:name), :as => :select
+  filter :group_department_name, :collection => Department.all.map(&:name), :as => :select
+  filter :group_branch_name, :collection => Branch.all.map(&:name), :as => :select
+
 end

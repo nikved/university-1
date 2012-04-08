@@ -12,11 +12,15 @@ class AdminUser < ActiveRecord::Base
 
   belongs_to :admin_role
 
+  scope :teachers, lambda { where('admin_users.admin_role_id = ?', AdminRole.teacher.id) }
+  scope :admins, lambda { where('admin_users.admin_role_id != ?', AdminRole.teacher.id) }
+
   validates :name, :presence => true, :uniqueness => true
   validates_presence_of :admin_role
 
   after_create { |admin| admin.send_reset_password_instructions }
   before_validation :setup_password, :on => :create
+
 
 
   def teacher?
