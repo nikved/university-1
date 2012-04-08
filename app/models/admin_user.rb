@@ -18,7 +18,7 @@ class AdminUser < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   validates_presence_of :admin_role
 
-  after_create { |admin| admin.send_reset_password_instructions }
+  after_create { |admin| admin.send_reset_password_instructions rescue nil }
   before_validation :setup_password, :on => :create
 
 
