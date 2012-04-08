@@ -12,7 +12,7 @@ end
 
 if Department.count < 20
   20.times do
-    dep = Department.create :faculty     => Faculty.first(:order => 'rand()'),
+    dep = Department.create :faculty     => Faculty.all.sample,
                             :name        => "Department of #{rand_name}",
                             :description => Forgery::LoremIpsum.words
     ap "department #{dep.name} created" if dep.persisted?
@@ -21,7 +21,7 @@ end
 
 if Branch.count < 20
   20.times do
-    branch = Branch.create :faculty     => Faculty.first(:order => 'rand()'),
+    branch = Branch.create :faculty     => Faculty.all.sample,
                            :name        => rand_name.capitalize,
                            :description => Forgery::LoremIpsum.words
     ap "branch #{branch.name} created" if branch.persisted?
@@ -30,11 +30,11 @@ end
 
 if Group.count < 10
   20.times do
-    group = Group.new :faculty => Faculty.first(:order => 'rand()'),
+    group = Group.new :faculty => Faculty.all.sample,
                        :number => Forgery::Basic.number,
                        :start_year => Forgery::Date.year(:past => true, :min_delta => 2, :max_delta => 8)
-    group.branch     = group.faculty.branches.first(:order => 'rand()')
-    group.department = group.faculty.departments.first(:order => 'rand()')
+    group.branch     = group.faculty.branches.sample
+    group.department = group.faculty.departments.sample
     group.save
 
     ap "gropu #{group.name} created" if group.persisted?
@@ -48,7 +48,7 @@ if Student.count < 100
                              :password_confirmation => AdminUser::DEFAULT_PASSWORD,
                              :first_name            => Forgery::Name.first_name,
                              :last_name             => Forgery::Name.last_name,
-                             :group                 => Group.first(:order => 'rand()'),
+                             :group                 => Group.all.sample,
                              :birthday              => Forgery::Date.date(:past => true, :min_delta => 8000, :max_delta => 9000)
     ap "student #{student.name} created" if student.persisted?
   end
