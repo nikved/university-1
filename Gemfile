@@ -13,7 +13,7 @@ gem 'awesome_print'
 gem 'forgery'
 gem 'cancan'
 gem 'draper'
-gem 'activerecord-postgresql-adapter'
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
