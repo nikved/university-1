@@ -5,7 +5,7 @@ module ApplicationHelper
 
     if logged_in?
       items['Personal Information'] = student_path(current_user)
-      items['Students'] = students_path
+      items['Students'] = students_path(:search => { :group_id_eq => current_user.group_id })
       items['Schedules'] = schedules_path
       items['Exams'] = exams_path
     end

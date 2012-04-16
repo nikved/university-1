@@ -12,6 +12,7 @@ ActiveAdmin.register Lesson do
     column :teacher
     column :day
     column :lecture
+    column :room
     column '' do |lesson|
       links = ''.html_safe
       links += link_to 'View', admin_lesson_path(lesson), :class => 'member_link view_link'

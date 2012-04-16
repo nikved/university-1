@@ -9,6 +9,8 @@ class AdminRole < ActiveRecord::Base
     @teacher ||= AdminRole.find_or_create_by_name('Teacher').tap do |role| 
       role.ability_items << AbilityItem.find_by_data('Schedule')
       role.ability_items << AbilityItem.find_by_data('Lesson')
+      role.ability_items << AbilityItem.find_by_data('Day')
+      role.ability_items << AbilityItem.find_by_data('AdminUser')
     end
   end
 
